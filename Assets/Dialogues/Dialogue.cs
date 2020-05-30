@@ -4,11 +4,38 @@ namespace Assets.Dialogues
 {
     public class Dialogue
     {
-        private IList<DialoguePart> dialogueParts;
+        private int currentDialoguePartIdentifier;
+        private IDictionary<int, DialoguePart> dialogueParts;
 
-        public Dialogue(IList<DialoguePart> dialogueParts)
+        public Dialogue(IDictionary<int, DialoguePart> dialogueParts)
         {
+            currentDialoguePartIdentifier = 0;
             this.dialogueParts = dialogueParts;
+        }
+
+        public void ResetProgress()
+        {
+            currentDialoguePartIdentifier = 0;
+        }
+
+        public string RetrieveCurrentSpeech()
+        {
+            return dialogueParts[currentDialoguePartIdentifier].Speech;
+        }
+
+        public IList<string> RetrieveResponses()
+        {
+            return dialogueParts[currentDialoguePartIdentifier].RetrieveResponses();
+        }
+
+        public bool IsResponseAvailable(int responseIdentifier)
+        {
+            return dialogueParts[currentDialoguePartIdentifier].IsResponseAvailable(responseIdentifier);
+        }
+
+        public void AdvanceToNextSpeech(int responseIdentifier)
+        {
+            currentDialoguePartIdentifier = dialogueParts[currentDialoguePartIdentifier].RetrieveNextDialoguePartIdentifier(responseIdentifier);
         }
     }
 }

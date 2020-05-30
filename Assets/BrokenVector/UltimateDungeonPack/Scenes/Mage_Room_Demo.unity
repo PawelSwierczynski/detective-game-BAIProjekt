@@ -66965,7 +66965,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -200}
-  m_SizeDelta: {x: 1150, y: 200}
+  m_SizeDelta: {x: 550, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1404083399
 MonoBehaviour:
@@ -78933,8 +78933,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -242.9, y: -168.8}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -200}
+  m_SizeDelta: {x: 500, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1702327282
 MonoBehaviour:
@@ -78967,7 +78967,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Lubi\u0119 placki!"
+  m_Text: 
 --- !u!222 &1702327283
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -93203,6 +93203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 778687937}
   dialogueManager: {fileID: 474513929}
+  dialogueIdentifier: 1
 --- !u!136 &1986818471
 CapsuleCollider:
   m_ObjectHideFlags: 0
