@@ -5,6 +5,8 @@ public class DialogueManager : MonoBehaviour
 {
     public Text dialogueTextBox;
     public Image dialogueBoxShadow;
+    public SC_CharacterController characterController;
+    public SC_InventorySystem inventorySystem;
 
     private DialogueBoxState dialogueBoxState;
 
@@ -23,11 +25,6 @@ public class DialogueManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && dialogueBoxState == DialogueBoxState.Hidden)
-        {
-            ShowDialogueBox();
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape) && dialogueBoxState == DialogueBoxState.Shown)
         {
             HideDialogueBox();
@@ -38,6 +35,8 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueTextBox.gameObject.SetActive(true);
         dialogueBoxShadow.gameObject.SetActive(true);
+        characterController.enabled = false;
+        inventorySystem.enabled = false;
 
         dialogueBoxState = DialogueBoxState.Shown;
     }
@@ -46,6 +45,8 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueTextBox.gameObject.SetActive(false);
         dialogueBoxShadow.gameObject.SetActive(false);
+        characterController.enabled = true;
+        inventorySystem.enabled = true;
 
         dialogueBoxState = DialogueBoxState.Hidden;
     }
