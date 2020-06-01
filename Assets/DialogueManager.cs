@@ -7,6 +7,8 @@ public class DialogueManager : MonoBehaviour
 {
     public Text dialogueTextBox;
     public Image dialogueBoxShadow;
+    public Text endgameTextBox;
+    public Image endgameBoxShadow;
     public SC_CharacterController characterController;
     public SC_InventorySystem inventorySystem;
 
@@ -23,7 +25,8 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         HideDialogueBox();
-
+        endgameBoxShadow.gameObject.SetActive(false);
+        endgameBoxShadow.gameObject.SetActive(false);
         currentDialogue = null;
         dialogueBoxState = DialogueBoxState.Hidden;
         dialogues = new Dictionary<int, Dialogue>
@@ -55,11 +58,11 @@ public class DialogueManager : MonoBehaviour
                     new Response("Był to Gregor.", -1),
                     new Response("Rimald zabił swoją żonę.", -1),
                     new Response("Jarom doprowadził do śmierci własną matkę.", -1),
-                    new Response("Ty ją zabiłeś!", -1),
                     new Response("Cathie ją zabiła.", 0),
+                    new Response("Ty ją zabiłeś!", -1),                    
                     new Response("Popełniła samobójstwo.", -1)
                 }),
-                [4] = new DialoguePart("Dokładnie tak, przejęła tę rolę po porzedniej zielarce, która okazała się być czarownicą, a, jak wiadomo, w naszym królestwie uprawianie wszelkiej formy magii jest surowo wzbronione. Należy walczyć z objawami wszelkiej herezji.", new List<Response>())
+                [4] = new DialoguePart("Dokładnie tak, przejęła tę rolę po poprzedniej zielarce, która okazała się być czarownicą, a, jak wiadomo, w naszym królestwie uprawianie wszelkiej formy magii jest surowo wzbronione. Należy walczyć z objawami wszelkiej herezji.", new List<Response>())
             }),
             [3] = new Dialogue("Gregor", new Dictionary<int, DialoguePart> 
             {
@@ -80,7 +83,7 @@ public class DialogueManager : MonoBehaviour
             }),
             [4] = new Dialogue("Jarom", new Dictionary<int, DialoguePart>
             {
-                [0] = new DialoguePart("Jesteś tym Panem, który ma znaleźć osobę, która zrobiłą coś złego mamie?", new List<Response>()
+                [0] = new DialoguePart("Jesteś tym Panem, który ma znaleźć osobę, która zrobiła coś złego mamie?", new List<Response>()
                 {
                     new Response("Tak, jestem. Jak ostatnio zachowywała się Twoja mama?", 1)
                 }),
@@ -134,7 +137,7 @@ public class DialogueManager : MonoBehaviour
             }),
             [8] = new Dialogue("Siekiera", new Dictionary<int, DialoguePart>
             {
-                [0] = new DialoguePart("*Obok kominka leży siekiera. Wygląda na używaną już od dłuższego czasu.*", new List<Response>() 
+                [0] = new DialoguePart("*Obok kominka leży siekiera. Wygląda na wysłużoną.*", new List<Response>() 
                 {
                     new Response("*Uważnie obejrzyj siekierę.*", 1)
                 }),
@@ -151,17 +154,25 @@ public class DialogueManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
-                    //TODO - you won
+                    endgameTextBox.text = "Wskazałeś zabójcę."+ "\n" + "Wygrałeś!";
+                    endgameTextBox.gameObject.SetActive(true);
+                    endgameBoxShadow.gameObject.SetActive(true);
+                    HideDialogueBox();
+                    characterController.enabled = false;
                     return;
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha6))
                 {
-                    //TODO - you lose
+                    endgameTextBox.text = "Wskazałeś niewłaściwą osobę." + "\n" + "Przegrałeś!";
+                    endgameTextBox.gameObject.SetActive(true);
+                    endgameBoxShadow.gameObject.SetActive(true);
+                    HideDialogueBox();
+                    characterController.enabled = false;
                     return;
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 HideDialogueBox();
                 currentDialogue.ResetProgress();

@@ -162,7 +162,7 @@ public class SC_InventorySystem : MonoBehaviour
     void OnGUI()
     {
         //Inventory UI
-        GUI.Label(new Rect(5, 5, 200, 25), "Press 'Tab' to open Inventory");
+        //GUI.Label(new Rect(5, 5, 200, 25), "Press 'Tab' to open Inventory");
 
         //Inventory window
         if (windowAnimation < 1)
@@ -259,9 +259,9 @@ public class SC_InventorySystem : MonoBehaviour
             if (detectedItem)
             {
                 GUI.color = new Color(0, 0, 0, 0.84f);
-                GUI.Label(new Rect(Screen.width / 2 - 75 + 1, Screen.height / 2 - 50 + 1, 150, 20), "Press 'F' to pick '" + detectedItem.itemName + "'");
+                GUI.Label(new Rect(Screen.width / 2 - 75 + 1, Screen.height / 2 - 50 + 1, 150, 20), "Naciśnij 'F' aby podnieść przedmiot '" + detectedItem.itemName + "'");
                 GUI.color = Color.green;
-                GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 20), "Press 'F' to pick '" + detectedItem.itemName + "'");
+                GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 20), "Naciśnij 'F' aby podnieść przedmiot '" + detectedItem.itemName + "'");
             }
         }
     }
