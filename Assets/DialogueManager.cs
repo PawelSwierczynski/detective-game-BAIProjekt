@@ -54,9 +54,9 @@ public class DialogueManager : MonoBehaviour
                 {
                     new Response("Był to Gregor.", -1),
                     new Response("Rimald zabił swoją żonę.", -1),
-                    new Response("Cathie ją zabiła.", 0),
                     new Response("Jarom doprowadził do śmierci własną matkę.", -1),
                     new Response("Ty ją zabiłeś!", -1),
+                    new Response("Cathie ją zabiła.", 0),
                     new Response("Popełniła samobójstwo.", -1)
                 }),
                 [4] = new DialoguePart("Dokładnie tak, przejęła tę rolę po porzedniej zielarce, która okazała się być czarownicą, a, jak wiadomo, w naszym królestwie uprawianie wszelkiej formy magii jest surowo wzbronione. Należy walczyć z objawami wszelkiej herezji.", new List<Response>())
@@ -115,6 +115,30 @@ public class DialogueManager : MonoBehaviour
                 }),
                 [2] = new DialoguePart("Tak, znałam ją bardzo dobrze. Czasami nawet pomagałam jej w obowiązkach domowych. Mają bardzo niewychowanego syna, który ciągle gdzieś znika. Myślę, że przebywa w złym towarzystwie.", new List<Response>()),
                 [3] = new DialoguePart("Poprzednia ostrzałka już jest zniszczona, a Gregor jest drwalem i musi dbać o swoją siekierę. Mój mąż jest często zajęty, więc ja udaję się do miasta po różne rzeczy - czy to jedzenie czy ubrania. Trzeba dbać o swój dom.", new List<Response>())
+            }),
+            [6] = new Dialogue("Sztylet", new Dictionary<int, DialoguePart>
+            {
+                [0] = new DialoguePart("*Na podłodze zobaczyłeś leżący sztylet. Podniosłeś go, by lepiej się przyjrzeć znalezisku.*", new List<Response>()
+                {
+                    new Response("*Obejrzyj sztylet.*", 1)
+                }),
+                [1] = new DialoguePart("*Obejrzałeś dokładnie sztylet - jego powierzchnia jest dośc mocno zarysowana. Przy jelcu znalazłeś jakiś czerwony-brązowy obiekt, który wygląda jak skrzep krwi. To może być narzędzie zbrodni.*", new List<Response>())
+            }),
+            [7] = new Dialogue("Książka", new Dictionary<int, DialoguePart>
+            {
+                [0] = new DialoguePart("*Na ziemi leży jakaś zakurzona książka.*", new List<Response>()
+                {
+                    new Response("*Obejrzyj książkę.*", 1)
+                }),
+                [1] = new DialoguePart("*Książka wygląda na starą. Okładka jest już dość zniszczona, a strony pożółkły. Tekst jednak zachował się dość dobrze. Wertując kolejne kartki znajdujesz dużo tajemniczych przepisów oraz inkantacji. W pewnym momencie zauważasz, że ktoś wyrwał kilka kartek. Jedyne, co po nich pozostało, to fragment tytułu - \"Eliksir pra\".*", new List<Response>())
+            }),
+            [8] = new Dialogue("Siekiera", new Dictionary<int, DialoguePart>
+            {
+                [0] = new DialoguePart("*Obok kominka leży siekiera. Wygląda na używaną już od dłuższego czasu.*", new List<Response>() 
+                {
+                    new Response("*Uważnie obejrzyj siekierę.*", 1)
+                }),
+                [1] = new DialoguePart("*Siekiera wygląda na nieco zużytą, jednak jej ostrze jest bardzo ostre, jakby nie było używane od jakiegoś czasu.*", new List<Response>())
             })
         };
     }
@@ -123,6 +147,20 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueBoxState == DialogueBoxState.Shown)
         {
+            if (currentDialogue.RetrieveResponses().Count == 6)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    //TODO - you won
+                    return;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    //TODO - you lose
+                    return;
+                }
+            }
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 HideDialogueBox();
@@ -195,7 +233,6 @@ public class DialogueManager : MonoBehaviour
         dialogueTextBox.gameObject.SetActive(true);
         dialogueBoxShadow.gameObject.SetActive(true);
         characterController.enabled = false;
-        inventorySystem.enabled = false;
 
         dialogueBoxState = DialogueBoxState.Shown;
     }
@@ -205,7 +242,6 @@ public class DialogueManager : MonoBehaviour
         dialogueTextBox.gameObject.SetActive(false);
         dialogueBoxShadow.gameObject.SetActive(false);
         characterController.enabled = true;
-        inventorySystem.enabled = true;
 
         dialogueBoxState = DialogueBoxState.Hidden;
     }
