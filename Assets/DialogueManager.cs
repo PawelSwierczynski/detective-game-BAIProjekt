@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
         dialogueBoxState = DialogueBoxState.Hidden;
         dialogues = new Dictionary<int, Dialogue>
         {
-            [1] = new Dialogue(new Dictionary<int, DialoguePart>
+            [1] = new Dialogue("Gość 1", new Dictionary<int, DialoguePart>
             {
                 [0] = new DialoguePart("Zastanawiałeś się kiedyś czy już działają dialogi?", new List<Response>()
                 {
@@ -79,7 +79,7 @@ public class DialogueManager : MonoBehaviour
 
     private void UpdateDialogueBox()
     {
-        dialogueTextBox.text = currentDialogue.RetrieveCurrentSpeech() + "\n\n";
+        dialogueTextBox.text = currentDialogue.SpeecherName + "\n" + currentDialogue.RetrieveCurrentSpeech() + "\n\n";
 
         int responseNumber = 1;
 

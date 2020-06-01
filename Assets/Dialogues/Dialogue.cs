@@ -6,11 +6,13 @@ namespace Assets.Dialogues
     {
         private int currentDialoguePartIdentifier;
         private IDictionary<int, DialoguePart> dialogueParts;
+        public string SpeecherName { get; }
 
-        public Dialogue(IDictionary<int, DialoguePart> dialogueParts)
+        public Dialogue(string speecherName, IDictionary<int, DialoguePart> dialogueParts)
         {
             currentDialoguePartIdentifier = 0;
             this.dialogueParts = dialogueParts;
+            SpeecherName = speecherName;
         }
 
         public void ResetProgress()
