@@ -5,7 +5,7 @@ namespace Assets.Dialogues
     public class Dialogue
     {
         private int currentDialoguePartIdentifier;
-        private IDictionary<int, DialoguePart> dialogueParts;
+        private readonly IDictionary<int, DialoguePart> dialogueParts;
         public string SpeecherName { get; }
 
         public Dialogue(string speecherName, IDictionary<int, DialoguePart> dialogueParts)
