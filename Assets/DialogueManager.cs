@@ -101,7 +101,7 @@ public class DialogueManager : MonoBehaviour
                 }),
                 [4] = new DialoguePart("Tak, proszę Pana. Zostawiłem ją na górze, tam jest więcej takich książek, ale tylko ta miała obrazki. Trochę straszne były. Ale nie mów tego tacie. Boję się, że znowu złoi mi skórę, a Pani Cathie znowu będzie mówić, że źle się zachowuję.", new List<Response>()
                 {
-                    new Response("Dlaczego Pani Pathie tak mówi?", 5)
+                    new Response("Dlaczego Pani Cathie tak mówi?", 5)
                 }),
                 [5] = new DialoguePart("Ostatnio, gdy przyszła do mamy, stałem pod drzwiami i... podsłuchiwałem. Nie rozumiałem zbytnio, co mówią, ale mama była zła, gdy Pani Cathie poprosiła ją o zrobienie eliskiru, jakoś tak mówiła. Potem mnie nakryły, a Pani Cathie mówiła, że jestem bardzo niegrzeczny.", new List<Response>())
             }),
@@ -125,7 +125,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     new Response("*Obejrzyj sztylet.*", 1)
                 }),
-                [1] = new DialoguePart("*Obejrzałeś dokładnie sztylet - jego powierzchnia jest dośc mocno zarysowana. Przy jelcu znalazłeś jakiś czerwony-brązowy obiekt, który wygląda jak skrzep krwi. To może być narzędzie zbrodni.*", new List<Response>())
+                [1] = new DialoguePart("*Obejrzałeś dokładnie sztylet - jego powierzchnia jest dość mocno zarysowana. Przy jelcu znalazłeś czerwony-brązowy obiekt, który wygląda na skrzep krwi. To może być narzędzie zbrodni.*", new List<Response>())
             }),
             [7] = new Dialogue("Książka", new Dictionary<int, DialoguePart>
             {
